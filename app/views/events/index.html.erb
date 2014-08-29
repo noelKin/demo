@@ -4,8 +4,10 @@
 
 
 <ul>
+	<% if @events.empty? %>
+		<%= "No record exists" %>
+	<% end %>
 	<% @events.each do |event| %>
-	
 	<li>
 		<%= event.name %>
 		<%= link_to 'Show', :controller => 'events', :action => 'show', :id => event %>

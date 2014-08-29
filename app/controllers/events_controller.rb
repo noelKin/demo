@@ -1,44 +1,44 @@
 class EventsController < ApplicationController
 
-	before_filter :find_event, :only => [ :show, :edit, :update, :destroy]
+	before_filter :find_event, :only => [:show, :edit, :update, :destroy]
 	
 	def index
-		@events = Event.all
-		#@events = Event.page(params[:page]).per_page(10)
-		#@events = @events.limit(10).page(params[:page])
-		#@events = Kaminari.paginate_array(@events.first(10)).page(params[:page])
+		@events = Event.page(params[:page]).per(5)
+		#@event = Event.page(params[:page]).per_page(10)
+		#@event = @event.limit(10).page(params[:page])
+		#@event = Kaminari.paginate_array(@event.first(10)).page(params[:page])
 	end
 
 	def new
-		@events = Event.new
+		@event = Event.new
 	end
 
 	def create
-		flash[:notice] = "event was successfully created"
-		@events = Event.new(params[:events])
-
-		if @events.save
+		@event = Event.new(event_params)
+		
+		if @event.save
+			flash[:notice] = "event was successfully created"
 			redirect_to :action => :index
 		else
+			flash[:notice] = "failed to create"
 			render :action => :show
 		end
 	end
 
 	def show
-		@page_title = @events.name
+		@page_title = @event.name
 	end
 	
 	
 	def edit
-		@events = Event.find(params[:id])
-		return
+		
 	end
 	
 	def update
-		#@events = Event.find(params[:id])
+		#@event = Event.find(params[:id])
 		flash[:notice] = "event was successfully updated"
-		if @events.update_attributes(params[:event])
-			redirect_to :action => :show, :id => @events
+		if @event.update_attributes(params[:event])
+			redirect_to :action => :show, :id => @event
 		else
 			render :action => :edit
 		end
@@ -46,7 +46,7 @@ class EventsController < ApplicationController
 	
 	def destroy
 		flash[:alert] = "event was successfully deleted"
-		@events.destroy
+		@event.destroy
 
 		redirect_to :action => :index
 	end
@@ -67,6 +67,9 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 	end
 	
-
+	private
 	
+	def event_params
+		params.require(:event).permit(:name, :description)
+	end
 end

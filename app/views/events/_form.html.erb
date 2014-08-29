@@ -4,7 +4,7 @@
 <%= f.label :description, "Description" %>
 <%= f.text_area :description %>
 
-<% if @events.errors.any? %>
+<% if @event.errors.any? %>
 	<ul>
 		<% @event.errors.full_messages.each do |msg| %>
 			<li>
