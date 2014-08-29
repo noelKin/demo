@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 	
 	root :to => "welcome#index"
 
-	match "edit_event", to: 'events#edit', via: 'get'
+	get "edit_event", to: 'events#edit', via: 'get'
 	
 	
 	

@@ -1,0 +1,10 @@
+<h1>
+	Show:
+</h1>
+
+<%= @events.name %>
+<%= simple_format(@event.description) %>
+
+<p>
+	<%= link_to 'Back to index', :controller => 'events', :action => 'index' %>
+</p>
