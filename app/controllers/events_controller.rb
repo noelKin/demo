@@ -2,11 +2,9 @@ class EventsController < ApplicationController
 
 	before_filter :find_event, :only => [:show, :edit, :update, :destroy]
 	
+	
 	def index
-		@events = Event.page(params[:page]).per(5)
-		#@event = Event.page(params[:page]).per_page(10)
-		#@event = @event.limit(10).page(params[:page])
-		#@event = Kaminari.paginate_array(@event.first(10)).page(params[:page])
+		@event = Event.page(params[:page]).per(10)
 	end
 
 	def new
@@ -31,11 +29,9 @@ class EventsController < ApplicationController
 	
 	
 	def edit
-		
 	end
 	
 	def update
-		#@event = Event.find(params[:id])
 		flash[:notice] = "event was successfully updated"
 		if @event.update_attributes(params[:event])
 			redirect_to :action => :show, :id => @event

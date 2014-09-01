@@ -2,8 +2,10 @@
 	Show:
 </h1>
 
-<%= @events.name %>
-<%= simple_format(@events.description) %>
+<p><b><%= "Name:" %></b></p>
+<p><%= @event.name %></p>
+<p><b><%= "Description:" %></b></p>
+<p><%= simple_format(@event.description) %></p>
 
 <p>
 	<%= link_to 'Back to index', :controller => 'events', :action => 'index' %>

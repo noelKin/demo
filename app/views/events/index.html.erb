@@ -1,25 +1,36 @@
 <h1>
-	New:
+	Index:
 </h1>
 
+<table border = "1" style = "width:50%">
 
-<ul>
-	<% if @events.empty? %>
+	<% if @event.empty? %>
 		<%= "No record exists" %>
 	<% end %>
-	<% @events.each do |event| %>
-	<li>
-		<%= event.name %>
-		<%= link_to 'Show', :controller => 'events', :action => 'show', :id => event %>
-		<%= link_to 'Edit', :controller => 'events', :action => 'edit', :id => event %>
-		<%= link_to 'Delete', :controller => 'events', :action => 'destroy', :id => event %>
-	</li>
+	<tr>
+		<th><%= "ID" %></th>
+		<th><%= "Name" %></th>
+		<th><%= "Description" %></th>
+		<th><%= "Show Details" %></th>
+		<th><%= "Edit Details" %></th>
+		<th><%= "Delete Details" %></th>
+	</tr>
 	
-	<%= paginate @events %>
+	<% @event.each do |event| %>
+		<tr>
+			<td><%= event.id %></td>
+			<td><%= event.name %></td>
+			<td><%= event.description %></td>
+			<td><%= link_to 'Show', :controller => 'events', :action => 'show', :id => event %></td>
+			<td><%= link_to 'Edit', :controller => 'events', :action => 'edit', :id => event %></td>
+			<td><%= link_to 'Delete', :controller => 'events', :action => 'destroy', :id => event %></td>
+		</tr>
 	<% end %>
-</ul>
+	
+</table>
 
+<%= paginate @event %>
 
-
-<%= link_to 'New event', :controller => 'events', :action => 'new' %>
-
+	<p>
+		<%= link_to 'New event', :controller => 'events', :action => 'new' %>
+	</p>
