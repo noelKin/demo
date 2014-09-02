@@ -3,15 +3,15 @@ Rails.application.routes.draw do
 	resources :people
 	resources :events
 	
+	root :to => "welcome#index"
+	
+	match "edit_event", 	to: 'events#edit', 		via: 'get'
+	match "destroy_event", 		to: 'events#destroy', 	via: 'delete'
+	
 	get "welcome/say_hello" => "welcome#say"
 	get "welcome" => "welcome#index"
 	
-	root :to => "welcome#index"
 
-	get "edit_event", to: 'events#edit', via: 'get'
-	
-	
-	
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 

@@ -42,9 +42,10 @@ class EventsController < ApplicationController
 	
 	def destroy
 		flash[:alert] = "event was successfully deleted"
-		@event.destroy
+		button_to :action => :destroy, :id => @event
+		#@event.destroy
 
-		redirect_to :action => :index
+		#redirect_to :action => :index
 	end
 	
 	def to_key

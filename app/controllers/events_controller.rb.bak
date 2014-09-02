@@ -33,18 +33,19 @@ class EventsController < ApplicationController
 	
 	def update
 		flash[:notice] = "event was successfully updated"
-		# if @event.update_attributes(params[:event])
-			# redirect_to :action => :show, :id => @event
-		# else
-			# render :action => :edit
-		# end
+		if @event.update_attributes(event_params)
+			redirect_to :action => :show, :id => @event
+		else
+			render :action => :edit
+		end
 	end
 	
 	def destroy
 		flash[:alert] = "event was successfully deleted"
-		@event.destroy
+		link_to :action => :destroy, :id => @event
+		#@event.destroy
 
-		redirect_to :action => :index
+		#redirect_to :action => :index
 	end
 	
 	def to_key
