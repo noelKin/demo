@@ -6,8 +6,6 @@ Rails.application.routes.draw do
 	root :to => "welcome#index"
 	
 	match "edit_event", 	to: 'events#edit', 		via: 'get'
-	#match "destroy_event", 		to: 'events#destroy', 	via: 'delete'
-	
 	get "welcome/say_hello" => "welcome#say"
 	get "welcome" => "welcome#index"
 	

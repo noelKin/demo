@@ -2,9 +2,13 @@ class EventsController < ApplicationController
 
 	before_filter :find_event, :only => [:show, :edit, :update, :destroy]
 	
-	
 	def index
 		@event = Event.page(params[:page]).per(10)
+		
+		e = Event.first
+		
+		@event = Event.find(params[:id])
+		@event.update_attributes(params[:event])
 	end
 
 	def new
@@ -41,11 +45,13 @@ class EventsController < ApplicationController
 	end
 	
 	def destroy
-		flash[:alert] = "event was successfully deleted"
-		link_to :action => :destroy, :id => @event
-		#@event.destroy
+		@event = Event.find(params[:id])
 
-		#redirect_to :action => :index
+		if @event.destroy
+			flash[:alert] = "event was successfully deleted"
+		end
+		
+		redirect_to :action => :index
 	end
 	
 	def to_key

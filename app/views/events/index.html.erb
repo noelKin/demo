@@ -2,7 +2,7 @@
 	Index:
 </h1>
 
-<table border = "1" style = "width:50%">
+<table border = "1" style = "width:100%">
 
 	<% if @event.empty? %>
 		<%= "No record exists" %>
@@ -23,7 +23,7 @@
 			<td><%= event.description %></td>
 			<td><%= link_to 'Show', :controller => 'events', :action => 'show', :id => event %></td>
 			<td><%= link_to 'Edit', :controller => 'events', :action => 'edit', :id => event %></td>
-			<td><%= button_to 'Destroy', event_path(event), :method=>:delete %></td>
+			<td><%= button_to 'Delete', event_path(event), :method=>:delete %></td>
 		</tr>
 	<% end %>
 	

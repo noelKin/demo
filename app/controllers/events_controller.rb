@@ -2,7 +2,6 @@ class EventsController < ApplicationController
 
 	before_filter :find_event, :only => [:show, :edit, :update, :destroy]
 	
-	
 	def index
 		@event = Event.page(params[:page]).per(10)
 	end
@@ -41,12 +40,12 @@ class EventsController < ApplicationController
 	end
 	
 	def destroy
-    @event = Event.find(params[:id])
+		@event = Event.find(params[:id])
 
-    if @event.destroy
-		  flash[:alert] = "event was successfully deleted"
-    end
-
+		if @event.destroy
+			flash[:alert] = "event was successfully deleted"
+		end
+		
 		redirect_to :action => :index
 	end
 	
